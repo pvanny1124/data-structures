@@ -102,6 +102,9 @@ class LinkedList {
       counter++;
       node = node.next;
     }
+    //If we reached the end of the while loop and nothing is returned, 
+        //the index is not valid (not in the list), so return null
+        //Also will return if there are no nodes.
     return null;
   }
 
@@ -133,11 +136,16 @@ class LinkedList {
       return;
     }
 
+      //If index is out of bounds, get the last node and use this to point to the 
+      //node being inserted, else, get the node at the previous index.
     const previous = this.getAt(index - 1) || this.getLast();
     const node = new Node(data, previous.next);
     previous.next = node;
   }
-
+  ////////////////////////////////////////////////
+  //EXTRA
+  ///////////////////////////////////////////////
+  
   forEach(fn) {
     let node = this.head;
     let counter = 0;
@@ -148,6 +156,7 @@ class LinkedList {
     }
   }
 
+  //Using a generator function from ES5
   *[Symbol.iterator]() {
     let node = this.head;
     while (node) {
